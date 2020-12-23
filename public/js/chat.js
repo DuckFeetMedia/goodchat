@@ -36,13 +36,19 @@ const autoscroll = () => {
 
 socket.on('message', (message) => {
     // console.log(message)
+    let txtMsg = message.text ? message.text : '';
+    if (txtMsg.split("http://").length > 1 || txtMsg.split("https://").length > 1) {
+        txtMsg = `<a href="${txtMsg}" target="_blank">${txtMsg}</a>`;
+    }
+    
     const html = Mustache.render(messageTemplate, {
         username: message.username,
-        message: message.text,
+        message: txtMsg,
         createdAt: moment(message.createdAt).format('h:mm a')
     })
     $messages.insertAdjacentHTML('beforeend', html)
     autoscroll()
+    showNotification(message.username, txtMsg)
 })
 
 socket.on('locationMessage', (message) => {
@@ -108,3 +114,35 @@ socket.emit('join', { username, room }, (error) => {
         location.href = '/'
     }
 })
+
+
+/// NOTIFICATIONS
+let permission = Notification.permission;
+if(permission === "granted") {
+   showNotification();
+} else if(permission === "default"){
+   requestAndShowPermission();
+} else {
+//   alert("New message");
+}
+function showNotification(user = false, message = false) {
+    if (!user || !message) return;
+    if(document.visibilityState === "visible") {
+        return;
+    }
+    var title = `${user} says:`;
+    icon = "/img/favicon.png"
+    var body = `${message}`;
+    var notification = new Notification(title, { body, icon });
+    notification.onclick = () => { 
+          notification.close();
+          window.parent.focus();
+   }
+}
+function requestAndShowPermission() {
+   Notification.requestPermission(function (permission) {
+      if (permission === "granted") {
+            showNotification();
+      }
+   });
+}
