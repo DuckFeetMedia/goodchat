@@ -3,7 +3,7 @@
     <head>
         <title>Chat App</title>
         <link rel="icon" href="/img/favicon.png">
-        <link rel="stylesheet" href="/css/styles.min.css">
+        <link rel="stylesheet" href="/css/styles.css">
     </head>
     <body>
         <div class="centered-form">
@@ -12,11 +12,14 @@
                 <form action="/chat.html">
                     <label>Display name</label>
                     <input type="text" name="username" placeholder="Display name" required>
-                    <label>Room</label>
-                    <input type="text" name="room" placeholder="Room" required>
+                    <!-- <label>Room</label> -->
+                    <input type="hidden" name="room" placeholder="Room" value="bro" required>
                     <button>Join</button>
                 </form>
             </div>
+        </div>
+        <div class="update">
+            <p>YGC v1.2.0:</p>
         </div>
     </body>
 </html>

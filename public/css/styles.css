@@ -40,7 +40,7 @@ input {
 button {
     cursor: pointer;
     padding: 12px;
-    background: #7C5CBF;
+    background: #344feb;
     border: none;
     color: white;
     font-size: 16px;
@@ -53,7 +53,7 @@ button:hover {
 
 button:disabled {
     cursor: default;
-    background: #7c5cbf94;
+    background: #344feb94;
 }
 
 /* Join Page Styles */
@@ -180,4 +180,28 @@ button:disabled {
     list-style-type: none;
     font-weight: 300;
     padding: 12px 24px 0 24px;
+}
+
+.update {
+    position: fixed;
+    bottom: 28px;
+    z-index: 2;
+    width: 100%;
+    height: 24px;
+    color: #fff;
+    text-align: center;
+}
+
+.update p {
+    font-size: 12px;
+}
+
+
+@media only screen and (max-width:1000px /* custom */ ) { 
+    input, button {
+        padding: 25px 12px;
+    }
+    .centered-form__box {
+        width: 85%;
+    }
 }

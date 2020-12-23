@@ -18,6 +18,7 @@
             <div class="compose">
                 <form id="message-form">
                     <input name="message" placeholder="Message" required autocomplete="off">
+                    <!-- <textarea name="message" id="" cols="" rows="3"></textarea> -->
                     <button>Send</button>
                 </form>
                 <button id="send-location">Send location</button>
@@ -31,7 +32,7 @@
                     <span class="message__name">{{username}}</span>
                     <span class="message__meta">{{createdAt}}</span>
                 </p>
-                <p>{{message}}</p>
+                <p>{{{message}}}</p>
             </div>
         </script>
 
