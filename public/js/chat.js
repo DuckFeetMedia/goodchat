@@ -90,23 +90,23 @@ $messageForm.addEventListener('submit', (e) => {
     })
 })
 
-$sendLocationButton.addEventListener('click', () => {
-    if (!navigator.geolocation) {
-        return alert('Geolocation is not supported by your browser.')
-    }
+// $sendLocationButton.addEventListener('click', () => {
+//     if (!navigator.geolocation) {
+//         return alert('Geolocation is not supported by your browser.')
+//     }
 
-    $sendLocationButton.setAttribute('disabled', 'disabled')
+//     $sendLocationButton.setAttribute('disabled', 'disabled')
 
-    navigator.geolocation.getCurrentPosition((position) => {
-        socket.emit('sendLocation', {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude
-        }, () => {
-            $sendLocationButton.removeAttribute('disabled')
-            console.log('Location shared!')  
-        })
-    })
-})
+//     navigator.geolocation.getCurrentPosition((position) => {
+//         socket.emit('sendLocation', {
+//             latitude: position.coords.latitude,
+//             longitude: position.coords.longitude
+//         }, () => {
+//             $sendLocationButton.removeAttribute('disabled')
+//             console.log('Location shared!')  
+//         })
+//     })
+// })
 
 socket.emit('join', { username, room }, (error) => {
     if (error) {
@@ -115,6 +115,7 @@ socket.emit('join', { username, room }, (error) => {
     }
 })
 
+// var audio = new Audio("/img/blat.mp3");
 
 /// NOTIFICATIONS
 let permission = Notification.permission;
@@ -131,9 +132,14 @@ function showNotification(user = false, message = false) {
         return;
     }
     var title = `${user} says:`;
-    icon = "/img/favicon.png"
-    var body = `${message}`;
-    var notification = new Notification(title, { body, icon });
+    let options = {
+        body: message,
+        icon: "/img/favicon.png",
+        sound: "/img/blat.mp3",
+        // silent: true
+    }
+
+    var notification = new Notification(title, options);
     notification.onclick = () => { 
           notification.close();
           window.parent.focus();
@@ -146,3 +152,4 @@ function requestAndShowPermission() {
       }
    });
 }
+

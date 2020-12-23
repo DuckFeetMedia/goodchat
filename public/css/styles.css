@@ -195,7 +195,36 @@ button:disabled {
 .update p {
     font-size: 12px;
 }
+button.snd {
+    padding: 15px 25px;
+}
 
+button.snd svg {
+    height: 20px;
+    width: auto;
+    transform: scaleX(-1);
+}
+
+button.snd svg path {
+    fill: #fff;
+}
+
+.chaticon svg {
+    height: 24px;
+    vertical-align: middle;
+    margin-left: 4px;
+}
+.users .chaticon svg {
+    height: 20px;
+    vertical-align: middle;
+    margin-left: 0;
+}
+
+.users .chaticon.user_2 svg path:not(.smile) {fill: rgb(51, 153, 114); stroke: rgb(51, 153, 114); }
+.users .chaticon.user_4 svg path:not(.smile) {fill: rgb(185, 192, 93); stroke: rgb(185, 192, 93); }
+.users .chaticon.user_3 svg path:not(.smile) {fill: blue !important; stroke: blue !important; }
+.users .chaticon.user_5 svg path:not(.smile) {fill: olivedrab !important; stroke: olivedrab !important; }
+.users .chaticon.user_6 svg path:not(.smile) {fill: rosybrown !important; stroke: rebeccapurple !important; }
 
 @media only screen and (max-width:1000px /* custom */ ) { 
     input, button {

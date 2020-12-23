@@ -4,7 +4,7 @@
 <head>
     <title>Chat App</title>
     <link rel="icon" href="/img/favicon.png">
-    <link rel="stylesheet" href="/css/styles.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
@@ -18,9 +18,10 @@
             <div class="compose">
                 <form id="message-form">
                     <input name="message" placeholder="Message" required autocomplete="off">
-                    <button>Send</button>
+                    <!-- <button>Send</button> -->
+                    <button class="snd"><svg height="512" viewBox="0 0 512.005 512.005" width="512" xmlns="http://www.w3.org/2000/svg"><path d="M511.658 51.675c2.496-11.619-8.895-21.416-20.007-17.176l-482 184a15 15 0 00-.054 28.006L145 298.8v164.713a15 15 0 0028.396 6.75l56.001-111.128 136.664 101.423c8.313 6.17 20.262 2.246 23.287-7.669C516.947 34.532 511.431 52.726 511.658 51.675zm-118.981 52.718L157.874 271.612 56.846 232.594zM175 296.245l204.668-145.757c-176.114 185.79-166.916 176.011-167.684 177.045-1.141 1.535 1.985-4.448-36.984 72.882zm191.858 127.546l-120.296-89.276 217.511-229.462z"/></svg></button>
                 </form>
-                <button id="send-location">Send location</button>
+                <!-- <button id="send-location">Send location</button> -->
             </div>
         </div>
     </div>
@@ -42,15 +43,20 @@
                     <span class="message__meta">{{createdAt}}</span>
                 </p>
                 <p><a href="{{url}}" target="_blank">My current location</a></p>
+
+            <iframe src="{{url}}" frameborder="0"></iframe>
             </div>
         </script>
 
     <script id="sidebar-template" type="text/html">
-            <h2 class="room-title">{{room}}</h2>
+            <h2 class="room-title chaticon">{{room}}</h2>
             <h3 class="list-title">Users</h3>
             <ul class="users">
                 {{#users}}
-                    <li>{{username}}</li>
+                    <li class="user_{{count}} chaticon">
+                        {{username}}
+                        &nbsp;<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M87.22 65.28c-.25.63-.51 1.24-.78 1.85" fill="none" stroke="#485daa" stroke-miterlimit="10" stroke-width="7"/><path d="M65.33 88.47a42.61 42.61 0 1121.89-23.19" fill="#485daa" stroke="#485daa" stroke-miterlimit="10" stroke-width="7"/><path d="M69.86 86a42.82 42.82 0 01-4.53 2.43" fill="none" stroke="#485daa" stroke-miterlimit="10" stroke-width="7"/><path fill="#485daa" stroke="#485daa" stroke-miterlimit="10" stroke-width="7" d="M86.04 64.78L94.59 90l-29.26-3.39"/><path d="M34.4 48.75a4 4 0 01-1.26-3.06 4.23 4.23 0 011.26-3.11 4.34 4.34 0 013.22-1.26 4.54 4.54 0 013.28 1.26 4.16 4.16 0 011.31 3.11 4 4 0 01-1.31 3.06A4.63 4.63 0 0137.62 50a4.42 4.42 0 01-3.22-1.25zm0 16.25a4 4 0 01-1.26-3.06 4.23 4.23 0 011.26-3.11 4.34 4.34 0 013.22-1.26 4.54 4.54 0 013.28 1.26 4.16 4.16 0 011.31 3.11A4 4 0 0140.9 65a4.63 4.63 0 01-3.28 1.21A4.42 4.42 0 0134.4 65zM51.56 25.42Q63 35.59 63 49.25T51.56 73.07l-4.7-3.5A38.24 38.24 0 0054 59.76a24.69 24.69 0 000-21.09 38.89 38.89 0 00-7.07-9.86z" fill="#fff" class="smile"/></svg>
+                    </li>
                 {{/users}}
             </ul>
         </script>
