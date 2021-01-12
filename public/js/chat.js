@@ -3,6 +3,7 @@ const socket = io()
 // Elements
 const $messageForm = document.querySelector('#message-form')
 const $messageFormInput = $messageForm.querySelector('input')
+const $messageFormFile = $messageForm.querySelector('.img')
 const $messageFormButton = $messageForm.querySelector('button')
 const $sendLocationButton = document.querySelector('#send-location')
 const $messages = document.querySelector('#messages')
@@ -14,6 +15,24 @@ const sidebarTemplate = document.querySelector('#sidebar-template').innerHTML
 
 // Options
 const { username, room } = Qs.parse(location.search, { ignoreQueryPrefix: true })
+
+const emojiBtn = document.querySelector('.emoji-pop .emoji-btn')
+const emojiList = document.querySelector('.emoji-pop ul')
+const emojis = document.querySelectorAll('.emoji-pop ul li')
+
+emojiBtn.addEventListener('click', () => {
+    if (emojiList.classList.contains('active')) {
+        emojiList.classList = ''
+    } else {
+        emojiList.classList = 'active'
+    }
+})
+
+emojis.forEach((e) => {
+    e.addEventListener('click', () => {
+        $messageFormInput.value = $messageFormInput.value + e.dataset.code
+    })
+})
 
 const autoscroll = () => {
     const $newMessage = $messages.lastElementChild
@@ -34,6 +53,21 @@ const autoscroll = () => {
 
 }
 
+// function previewFile() {
+//     const preview = document.querySelector('img');
+//     const file = document.querySelector('input[type=file]').files[0];
+//     const reader = new FileReader();
+  
+//     reader.addEventListener("load", function () {
+//       // convert image file to base64 string
+//       preview.src = reader.result;
+//     }, false);
+  
+//     if (file) {
+//       reader.readAsDataURL(file);
+//     }
+//   }
+
 socket.on('message', (message) => {
     // console.log(message)
     let txtMsg = message.text ? message.text : '';
@@ -41,9 +75,19 @@ socket.on('message', (message) => {
         txtMsg = `<a href="${txtMsg}" target="_blank">${txtMsg}</a>`;
     }
     
+    // let sendfile = $messageFormFile.files ? $messageFormFile.files[0] : false;
+    // if ($messageFormFile.value) { 
+    //     sendfile = getBase64(sendfile);
+    //     console.log(sendfile)
+    // } else {
+    //     sendfile = '';
+    // }
+
+    // let file = $messageFormFile.value
     const html = Mustache.render(messageTemplate, {
         username: message.username,
         message: txtMsg,
+        // file: sendfile,
         createdAt: moment(message.createdAt).format('h:mm a')
     })
     $messages.insertAdjacentHTML('beforeend', html)

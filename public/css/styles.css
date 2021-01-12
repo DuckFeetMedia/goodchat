@@ -220,6 +220,48 @@ button.snd svg path {
     margin-left: 0;
 }
 
+/* EMOJIS */
+.emoji-pop {
+    position: relative;
+}
+
+.emoji-pop span {height: 100%;cursor: pointer;
+    padding: 12px;
+    background: #344feb;
+    border: none;
+    color: white;
+    font-size: 16px;
+    display: inline-block;
+    line-height: 29px;
+}
+
+.emoji-pop span:hover {
+    background-color: #6b47b8;
+}
+
+.emoji-pop ul {
+    position: absolute;
+    bottom: 100%;
+    list-style: none;
+    /* border: 1px red solid; */
+    width: 100%;
+    display: grid;
+    place-content: center;
+    display: none;
+    grid-auto-rows: 31px;
+    /* grid-template-rows: repeat(20, 30px); */
+    grid-auto-columns: 30px 30px;
+    grid-template-columns: 30px 30px 30px;
+}
+
+.emoji-pop ul li:hover {
+    cursor: pointer;
+}
+
+.emoji-pop ul.active {
+    display: grid;
+}
+
 .users .chaticon.user_2 svg path:not(.smile) {fill: rgb(51, 153, 114); stroke: rgb(51, 153, 114); }
 .users .chaticon.user_4 svg path:not(.smile) {fill: rgb(185, 192, 93); stroke: rgb(185, 192, 93); }
 .users .chaticon.user_3 svg path:not(.smile) {fill: blue !important; stroke: blue !important; }
