@@ -31,6 +31,12 @@ emojiBtn.addEventListener('click', () => {
 emojis.forEach((e) => {
     e.addEventListener('click', () => {
         $messageFormInput.value = $messageFormInput.value + e.dataset.code
+
+        if (emojiList.classList.contains('active')) {
+            emojiList.classList = ''
+        } else {
+            emojiList.classList = 'active'
+        }
     })
 })
 
